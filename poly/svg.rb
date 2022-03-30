@@ -14,7 +14,7 @@ options = {
   :show_x_title      => true,
   :x_title           => 'Studienrichtung',
   :show_y_title      => true,
-  :y_title           => 'Studenten',
+  :y_title           => 'Studentierende',
   :y_title_location  => :end,
   :no_css            => true
 }
