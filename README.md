@@ -11,4 +11,17 @@ $ export JAVA_HOME=$path_to_unpacked_graalvm
 $ export PATH=$JAVA_HOME/bin:$PATH
 ```
 
-and then have a look at `run.sh`.
+Install remaining modules and trigger rebuild of images:
+```sh
+$ gu install native-image ruby python nodejs
+$ JAVA_HOME/languages/ruby/lib/truffle/post_install_hook.sh
+$ gu rebuild-images polyglot libpolyglot
+```
+
+Install language dependencies for polyglot example:
+```sh
+$ gem install svg-graph
+$ (cd poly && npm install)
+```
+
+Then have a look at `run.sh`.
