@@ -1,4 +1,6 @@
-This is a modified version of https://github.com/graalvm/graalvm-demos
+## Demo @ Uebersetzerbau VO SS2022 at TU Wien
+
+This is an adapted version of https://github.com/graalvm/graalvm-demos
 
 ## Steps
 
@@ -7,7 +9,7 @@ Download GraalVM at https://www.graalvm.org/
 Set `JAVA_HOME` and `PATH` accordingly:
 
 ```sh
-$ export JAVA_HOME=$path_to_unpacked_graalvm
+$ export JAVA_HOME=$PATH_TO_UNPACKED_GRAALVM
 $ export PATH=$JAVA_HOME/bin:$PATH
 ```
 
@@ -28,7 +30,7 @@ The Ruby openssl C extension needs to be recompiled on your system to work with 
 First, make sure TruffleRuby's dependencies are installed, which are described at:
   https://github.com/oracle/truffleruby/blob/master/README.md#dependencies
 Then run the following command:
-        $path_to_unpacked_graalvm/languages/ruby/lib/truffle/post_install_hook.sh
+        $JAVA_HOME/languages/ruby/lib/truffle/post_install_hook.sh
 ```
 
 Install language dependencies for polyglot example:
@@ -37,4 +39,4 @@ $ gem install svg-graph
 $ (cd poly && npm install)
 ```
 
-and then have a look at `run.sh`.
+And then have a look at `run.sh`.

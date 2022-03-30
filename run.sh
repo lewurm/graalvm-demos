@@ -12,10 +12,10 @@ vim src/main/java/hello/HelloController.java
 
 ./gradle build
 
-$JAVA_HOME/bin/java -jar build/libs/hello-0.1-all.jar
+java -jar build/libs/hello-0.1-all.jar
 
 java -jar -XX:+PrintCompilation build/libs/hello-0.1-all.jar
-
+# or
 java -jar -Dgraal.PrintCompilation=true build/libs/hello-0.1-all.jar
 
 native-image -jar build/libs/hello-0.1-all.jar
@@ -32,9 +32,14 @@ node --version
 
 graalpython
 
-node --jvm --polyglot server.js
+node --jvm server.js
 
-node --jvm --polyglot --engine.TraceCompilation server.js
+node --native server.js
+
+# see guest language runtime compilations
+node --native --engine.TraceCompilation server.js
+
+# move and uncomment ruby/python invocations in server.js
 
 node --native --polyglot server.js
 
