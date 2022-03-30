@@ -11,4 +11,11 @@ $ export JAVA_HOME=$path_to_unpacked_graalvm
 $ export PATH=$JAVA_HOME/bin:$PATH
 ```
 
+download and prepare additional artifacts
+
+```sh
+$ gu install python ruby native-image nodejs
+$ gu rebuild-images libpolyglot
+```
+
 and then have a look at `run.sh`.
