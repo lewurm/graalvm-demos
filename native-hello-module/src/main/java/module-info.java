@@ -1,3 +1,0 @@
-module HelloModule {
-    exports hello;
-}

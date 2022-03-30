@@ -2,6 +2,7 @@
 # Created by https://www.gitignore.io/api/java,node,maven,eclipse,intellij+all
 
 ### Eclipse ###
+package-lock.json
 
 .metadata
 bin/
