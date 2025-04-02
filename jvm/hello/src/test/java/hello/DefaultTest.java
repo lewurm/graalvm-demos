@@ -1,5 +1,5 @@
 /*
- * Copyright 2017-2024 original authors
+ * Copyright 2017-2025 original authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,22 @@
  */
 package hello;
 
-import io.micronaut.http.MediaType;
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Get;
-import io.micronaut.http.annotation.Produces;
+import io.micronaut.runtime.EmbeddedApplication;
+import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
-@Controller("/hello")
-public class HelloController {
-    @Get
-    @Produces(MediaType.TEXT_PLAIN)
-    public String index() {
-        return "Hello Uebersetzerbau VU";
+import jakarta.inject.Inject;
+
+@MicronautTest
+class DefaultTest {
+
+    @Inject
+    EmbeddedApplication<?> application;
+
+    @Test
+    void testItWorks() {
+        Assertions.assertTrue(application.isRunning());
     }
+
 }

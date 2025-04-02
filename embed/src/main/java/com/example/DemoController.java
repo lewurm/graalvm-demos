@@ -17,13 +17,11 @@ public class DemoController {
     private final PyGalServicePurePython pyGalServicePurePython;
     private final PyGalServicePureJava pyGalServicePureJava;
     private final PyGalServiceMixed pyGalServiceMixed;
-    private final PyGalServiceValueAPIDynamic pyGalServiceValueAPIDynamic;
 
-    DemoController(PyGalServicePurePython pyGalServicePurePython, PyGalServicePureJava pyGalServicePureJava, PyGalServiceMixed pyGalServiceMixed, PyGalServiceValueAPIDynamic pyGalServiceValueAPIDynamic) {
+    DemoController(PyGalServicePurePython pyGalServicePurePython, PyGalServicePureJava pyGalServicePureJava, PyGalServiceMixed pyGalServiceMixed) {
         this.pyGalServicePurePython = pyGalServicePurePython;
         this.pyGalServicePureJava = pyGalServicePureJava;
         this.pyGalServiceMixed = pyGalServiceMixed;
-        this.pyGalServiceValueAPIDynamic = pyGalServiceValueAPIDynamic;
     }
 
     @Get("/python")
@@ -42,12 +40,6 @@ public class DemoController {
     @Produces(MediaType.IMAGE_SVG)
     public String renderXYChartMixed() {
         return pyGalServiceMixed.renderXYChart();
-    }
-
-    @Get("/dynamic")
-    @Produces(MediaType.IMAGE_SVG)
-    public String renderXYChartValueAPIDynamic() {
-        return pyGalServiceValueAPIDynamic.renderXYChart();
     }
 }
 

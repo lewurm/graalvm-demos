@@ -23,8 +23,6 @@ class DemoTest {
     private PyGalServicePurePython pyGalServicePurePython;
     @Inject
     private PyGalServiceMixed pyGalServiceMixed;
-    @Inject
-    private PyGalServiceValueAPIDynamic pyGalServiceValueAPIDynamic;
 
     @Test
     void testIdentity() {
@@ -35,7 +33,7 @@ class DemoTest {
 
         // We use a HashSet to check whether the charts are identical
         HashSet<String> xyCharts = new HashSet<>();
-        for (PyGalService service : List.of(pyGalServicePureJava, pyGalServicePurePython, pyGalServiceMixed, pyGalServiceValueAPIDynamic)) {
+        for (PyGalService service : List.of(pyGalServicePureJava, pyGalServicePurePython, pyGalServiceMixed)) {
             String xyChart = service.renderXYChart();
             String xzChartSanitized = xyChart.replaceAll(chartPattern, "chart").replaceAll(pyGalConfigPattern, "pygal.config");
             xyCharts.add(xzChartSanitized);

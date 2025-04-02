@@ -1,10 +1,12 @@
-## Demo @ Uebersetzerbau VO SS2022 at TU Wien
+# Demos @ Uebersetzerbau VO SS2025 at TU Wien
 
-This is an adapted version of https://github.com/graalvm/graalvm-demos
+This is an adapted version of https://github.com/graalvm/graalvm-demos and https://github.com/graalvm/graal-languages-demos
 
-## Steps
+## Initial Setup
 
-Download GraalVM at https://www.graalvm.org/
+Download GraalVM at
+- Community Edition: https://github.com/graalvm/graalvm-ce-builds/releases/
+- Oracle GraalVM: https://www.graalvm.org/
 
 Set `JAVA_HOME` and `PATH` accordingly:
 
@@ -13,30 +15,49 @@ $ export JAVA_HOME=$PATH_TO_UNPACKED_GRAALVM
 $ export PATH=$JAVA_HOME/bin:$PATH
 ```
 
-
-Download and prepare additional artifacts:
-
 ```sh
-$ gu install python ruby native-image nodejs
-$ gu rebuild-images libpolyglot
+#!/bin/bash
+set -e
+
+export JAVA_HOME=/Users/lewurm/tuwien/graalvm-community-openjdk-24+36.1/Contents/Home/
+export PATH=$JAVA_HOME/bin:$PATH
 ```
 
-Lookout for the following note:
+## GraalVM with JIT
 
+Run Micronaut example on GraalVM with JIT:
 ```sh
-IMPORTANT NOTE:
----------------
-The Ruby openssl C extension needs to be recompiled on your system to work with the installed libssl.
-First, make sure TruffleRuby's dependencies are installed, which are described at:
-  https://github.com/oracle/truffleruby/blob/master/README.md#dependencies
-Then run the following command:
-        $JAVA_HOME/languages/ruby/lib/truffle/post_install_hook.sh
+$ cd jvm/hello
+$ vim src/main/java/hello/HelloController.java
+
+$ ./mvnw -q package
+$ java -jar target/default-0.1.jar
+$ java -jar -XX:+PrintCompilation build/libs/hello-0.1-all.jar
+
+$ # check browser on http://localhost:8080/hello
 ```
 
-Install language dependencies for polyglot example:
+## GraalVM with Native Image
+
+Build Micronaut app with Native Image:
 ```sh
-$ gem install svg-graph
-$ (cd poly && npm install)
+$ cd jvm/hello
+$ ./mvnw -q clean
+$ ./mvnw -q package -Dpackaging=native-image
+$ file target/default
+$ ./target/default
+
+$ # check browser on http://localhost:8080/hello
 ```
 
-And then have a look at `run.sh`.
+## Embed GraalPy
+
+Run Micronaut app that embeds GraalPy to use `pygal` package to render a chart:
+```sh
+$ cd embed
+$ ./mvnw -q package mn:run
+
+$ # check browser on http://localhost:8080/java
+$ # check browser on http://localhost:8080/python
+$ # check browser on http://localhost:8080/mixed
+```
